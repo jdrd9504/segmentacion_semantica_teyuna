@@ -57,16 +57,12 @@ with st.expander(":violet[Clic acá para ver información sobre las imagenes de 
     st.markdown("""
     Se requiere la carga de los archivos RGB, DTM y PTI, asegurando la consistencia con los canales de entrada utilizados durante el entrenamiento de la red de segmentación semántica.
 
-    - **Distancias** a eventos de minas, acciones orientadas a civiles o a combatientes, y a vías.
-        ¿a qué distancia está cada evento?
+    - **Imagen de Color Real (RGB):** Representa la cobertura superficial de la zona. Se compone de tres canales (Rojo, Verde y Azul).
         
-    - **Densidades** en radios definidos en torno a eventos de minas, acciones orientadas a civiles o a combatientes
-        ¿Cuántos eventos han sucedido en un radio de 250 m? 
+    - **Modelo Digital de Terreno (DTM):** Una representación digital del relieve terrestre sin la influencia de vegetación o estructuras. Corresponde a un solo canal de datos de elevación.
     
-    - **Características topográficas** como pendiente y orientación (aspecto), derivadas de modelos de elevación digital  
-    - **Tipo de cobertura del suelo**, **tipo de relieve morfométrico** y **tipo de vía**, extraídos por intersección con cartografía temática
-    - **Solicitudes de restitución de predios** a partir de información dela URT.
-
+    - **Índice de Posición Topográfica (PTI):** Derivado del DTM, este índice de un solo canal describe la posición morfológica relativa de cada píxel en el terreno (por ejemplo, si está en una cumbre, ladera o valle).  
+    
     Al completar la carga, se obtendra el mapa de probabilidades, listo para su análisis externo en software especializado como 'QGIS'.
     """)
 
@@ -358,6 +354,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
