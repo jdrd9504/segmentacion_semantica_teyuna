@@ -74,8 +74,11 @@ with st.expander(":violet[Clic acá para ver información sobre las imagenes de 
 # ---------------carga de datos
 st.subheader(":gray[Carga de datos:]", divider=True)
 # -------------------------------
-#  VISUALIZACIÓN DEL GPKG
+#  IMAGENES
 # -------------------------------
+
+st.write(":gray[### Carga de datos]")
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown(":gray[**Imagen RGB**]")
@@ -355,6 +358,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
