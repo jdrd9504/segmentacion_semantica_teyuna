@@ -72,7 +72,7 @@ with st.expander(":violet[Clic acá para ver información sobre las imagenes de 
 
 
 # ---------------carga de datos
-st.subheader(":violet[Carga de datos:]", divider=True)
+st.subheader(":gray[Carga de datos:]", divider=True)
 # -------------------------------
 #  VISUALIZACIÓN DEL GPKG
 # -------------------------------
@@ -80,6 +80,24 @@ st.subheader(":violet[Carga de datos:]", divider=True)
 with st.expander(":gray[Clic acá para subir la imagen RGB]"):
     uploaded_rgb = st.file_uploader(
         "Sube tu archivo RGB", accept_multiple_files=False, type=["gpkg"], key="gpkg"
+    )
+
+with st.expander(":gray[Clic acá para subir la imagen DTM]"):
+    uploaded_dtm = st.file_uploader(
+        "Sube tu archivo DTM", 
+        accept_multiple_files=False, 
+        # Normalmente los DTM son .tif, pero puedes dejar gpkg si así lo usas
+        type=["tif", "tiff", "gpkg"], 
+        key="uploader_dtm" # IMPORTANTE: Key único
+    )
+
+# --- 3. Carga de PTI  ---
+with st.expander(":gray[Clic acá para subir la imagen PTI]"):
+    uploaded_pti = st.file_uploader(
+        "Sube tu archivo PTI", 
+        accept_multiple_files=False, 
+        type=["tif", "tiff", "gpkg"], 
+        key="uploader_pti" # IMPORTANTE: Key único
     )
 
     if uploaded_rgb is not None:
@@ -348,6 +366,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
