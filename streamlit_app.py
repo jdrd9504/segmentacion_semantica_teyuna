@@ -81,14 +81,6 @@ with st.expander(":gray[Clic acá para subir la imagen RGB]"):
     uploaded_rgb = st.file_uploader(
         "Sube tu archivo RGB", accept_multiple_files=False, type=["gpkg"], key="gpkg"
     )
-with st.expander(":gray[Clic acá para subir el modelo digital de terrenos]"):
-    uploaded_dtm = st.file_uploader(
-        "Sube tu DTM", accept_multiple_files=False, type=["gpkg"], key="gpkg"
-    )
-with st.expander(":gray[Clic acá para subir el índice de posición topográfica (PTI)]"):
-    uploaded_pti = st.file_uploader(
-        "Sube tu PTI", accept_multiple_files=False, type=["gpkg"], key="gpkg"
-    )
 
     if uploaded_rgb is not None:
         try:
