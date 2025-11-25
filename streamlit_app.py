@@ -49,13 +49,13 @@ A través de un mapa de segmentación , tablas de resumen y exportación de resu
 """)
 
 # Nota aclaratoria
-st.caption("Los resultados de este aplicativo son de carácter exploratorio y Aunque se implementan técnicas de aprendizaje automático —herramientas computacionales diseñadas para reconocer patrones y clasificar datos a partir de ejemplos—, se ha optado por no usar el término “predicción” de forma directa. Esto se debe a que esta propuesta no busca ni pretende reemplazar la profunda labor investigativa y arqueológica, sino que propone una aproximación técnica complementaria, desde el campo de los análisis geoespaciales y el análisis supervisado, para aportar datos que acoten esa labor.")
+st.caption("Los resultados de este aplicativo son de carácter exploratorio y aunque se implementan técnicas de aprendizaje automático —herramientas computacionales diseñadas para reconocer patrones y clasificar datos a partir de ejemplos—, se ha optado por no usar el término “predicción” de forma directa. Esto se debe a que esta propuesta no busca ni pretende reemplazar la profunda labor investigativa y arqueológica, sino que propone una aproximación técnica complementaria, desde el campo de los análisis geoespaciales y el análisis supervisado de datos, para aportar insights que acoten esa labor.")
 
 # Construccion Dataset
 
-with st.expander(":violet[Clic acá para ver información sobre la generación previa del dataset de entrada]"):
+with st.expander(":violet[Clic acá para ver información sobre las imagenes de entrada]"):
     st.markdown("""
-    El dataset de entrada utilizado por los modelos fue construido mediante una serie de procesos de geoprocesamiento en `QGIS`. A partir de una cuadrícula base de puntos generada cada 500 metros sobre el área de estudio, se calcularon las siguientes variables espaciales:
+    Las imagenes de entrada utilizadas por los modelos fue construido mediante una serie de procesos de geoprocesamiento en `QGIS`. A partir de una cuadrícula base de puntos generada cada 500 metros sobre el área de estudio, se calcularon las siguientes variables espaciales:
 
     - **Distancias** a eventos de minas, acciones orientadas a civiles o a combatientes, y a vías.
         ¿a qué distancia está cada evento?
@@ -77,12 +77,20 @@ st.subheader(":violet[Carga de datos:]", divider=True)
 #  VISUALIZACIÓN DEL GPKG
 # -------------------------------
 
-with st.expander(":violet[Clic acá para subir el archivo de entrada]"):
-    uploaded_gpkg = st.file_uploader(
+with st.expander(":gray[Clic acá para subir la imagen RGB]"):
+    uploaded_rgb = st.file_uploader(
         "Sube tu archivo RGB", accept_multiple_files=False, type=["gpkg"], key="gpkg"
     )
+with st.expander(":gray[Clic acá para subir el modelo digital de terrenos]"):
+    uploaded_dtm = st.file_uploader(
+        "Sube tu DTM", accept_multiple_files=False, type=["gpkg"], key="gpkg"
+    )
+with st.expander(":gray[Clic acá para subir el índice de posición topográfica (PTI)]"):
+    uploaded_pti = st.file_uploader(
+        "Sube tu PTI", accept_multiple_files=False, type=["gpkg"], key="gpkg"
+    )
 
-    if uploaded_gpkg is not None:
+    if uploaded_rgb is not None:
         try:
             gdf = gpd.read_file(uploaded_gpkg)
 
@@ -138,7 +146,7 @@ with st.expander(":violet[Clic acá para subir el archivo de entrada]"):
 #  PREDICCIÓN DESDE GPKG - TRES MODELOS
 # -------------------------------
 st.markdown("---")
-st.subheader(":violet[Estimación de probabilidad de sitio de interés para la búsqueda:]", divider=True)
+st.subheader(":gray[Estimación de probabilidad de sitio de interés para la búsqueda:]", divider=True)
 
 ctrl = ModelController()
 
@@ -348,6 +356,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
