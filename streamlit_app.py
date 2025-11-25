@@ -21,36 +21,35 @@ st.set_page_config(layout="wide", page_title="Búsqueda Riberas UBPD", page_icon
 logo = Image.open("resources/img/logo.png")
 st.image(logo, width=500, use_container_width=False)
 
-st.title(":violet[Aplicación de una red de segmentación semántica para la identificación de áreas arqueológicas en Modelos Digitales de Terreno.​​]")
+st.title(":gray[Aplicación de una red de segmentación semántica para la identificación de áreas arqueológicas en Modelos Digitales de Terreno.​​]")
 
 ##Imagen Ciudad Perdida
 ciudad_perdida = Image.open("resources/img/ciudad_perdida.png")
 st.image(ciudad_perdida, width=1500, use_container_width=False)
 # Fuente
-st.caption("Imagen satelital del Río Cauca - Caucasia (Antioquia). Lat : 7.9351, Long:-75.1816")
+st.caption("Ciudad Perdida- maravilla arqueológica de América del Sur. Restos de la civilización Tayrona.")
 
 
 # Subtítulo contextual
-st.subheader(":gray[Proyecto de Búsqueda en Riberas — _Subdirección de Análisis, Planeación y Localización y Subdirección de Gestión de Información para la búsqueda_]")
+st.subheader(":gray[Proyecto de segmentacion de semantica para la identificación de áreas de interés arqueológico]")
 
-st.subheader(":violet[Introducción:]", divider=True)
+st.subheader(":gray[Introducción:]", divider=True)
 # Texto descriptivo
 st.markdown("""
-Este aplicativo permite realizar un análisis de probabilidad espacial orientado a la identificación de áreas con alta probabilidad de interés para la búsqueda de personas dadas por desaparecidas, con enfoque en riberas del río Cauca y rio Nechí.
+Este aplicativo facilita el análisis de datos geoespaciales mediante la ingesta de imágenes de un canal (DTM, PTI) y de tres canales (RGB). Su objetivo es realizar una segmentación semántica para estimar la probabilidad de presencia arqueológica a nivel de píxel, con un enfoque orientado a la topografía de Teyuna - Ciudad Perdida, Colombia.
 
-Utilizando modelos de **Aprendizaje de Máquina supervisado**, se genera una superficie de probabilidad con base en atributos del terreno, factores antrópicos y elementos geográficos relacionados con eventos del conflicto en el área el Plan Regional de Búsqueda de Bajo Cauca y Valdivia.
+El sistema estima la probabilidad de cada pixel de pertenecer a cualquiera de las siguientes clases:
 
-El sistema compara el comportamiento de tres enfoques diferentes:
+- Clase 1: Templo
+- Clase 2: Monticulo
+- Clase 3: Hidrología
+- Clase 4: Fondo
 
-- Modelo 1: Regresión Logística (MaxEnt)
-- Modelo 2: Ensamble de Regresiones Lineales
-- Modelo 3: Random Forest (Árboles de decisión)
-
-A través de visualizaciones interactivas, tablas de resumen y exportación de resultados, esta herramienta facilita la toma de decisiones basada en evidencia geoespacial.
+A través de un mapa de segmentación , tablas de resumen y exportación de resultados, esta herramienta facilita la toma de decisiones arqueológicas basada en evidencia geoespacial.
 """)
 
 # Nota aclaratoria
-st.caption("Los resultados de este aplicativo son de carácter exploratorio y Aunque se implementan técnicas de aprendizaje automático —herramientas computacionales diseñadas para reconocer patrones y clasificar datos a partir de ejemplos—, se ha optado por no usar el término “predicción” de forma directa. Esto se debe a que esta propuesta no busca ni pretende reemplazar la profunda labor investigativa, testimonial y humanitaria que realizan los buscadores y buscadoras, sino que propone una aproximación técnica complementaria, desde el campo de los análisis geoespaciales, para aportar datos que acoten esa labor titánica.")
+st.caption("Los resultados de este aplicativo son de carácter exploratorio y Aunque se implementan técnicas de aprendizaje automático —herramientas computacionales diseñadas para reconocer patrones y clasificar datos a partir de ejemplos—, se ha optado por no usar el término “predicción” de forma directa. Esto se debe a que esta propuesta no busca ni pretende reemplazar la profunda labor investigativa y arqueológica, sino que propone una aproximación técnica complementaria, desde el campo de los análisis geoespaciales y el análisis supervisado, para aportar datos que acoten esa labor.")
 
 # Construccion Dataset
 
@@ -80,7 +79,7 @@ st.subheader(":violet[Carga de datos:]", divider=True)
 
 with st.expander(":violet[Clic acá para subir el archivo de entrada]"):
     uploaded_gpkg = st.file_uploader(
-        "Sube tu archivo GPKG", accept_multiple_files=False, type=["gpkg"], key="gpkg"
+        "Sube tu archivo RGB", accept_multiple_files=False, type=["gpkg"], key="gpkg"
     )
 
     if uploaded_gpkg is not None:
@@ -349,5 +348,6 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
