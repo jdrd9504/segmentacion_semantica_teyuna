@@ -17,8 +17,8 @@ from io import BytesIO
 st.set_page_config(layout="wide", page_title="Búsqueda Riberas UBPD", page_icon="Sitios Búsquedaﾠ")
 
 
-##Logo UBPD
-logo = Image.open("resources/img/ubpd_color_logo.png")
+##Logo Maestria
+logo = Image.open("resources/img/logo.png")
 st.image(logo, width=500, use_container_width=False)
 
 st.title(":violet[Delimitación de áreas de interés para la búsqueda usando Análisis Espacial y Aprendizaje Computacional - UBPD​]")
@@ -349,3 +349,4 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
