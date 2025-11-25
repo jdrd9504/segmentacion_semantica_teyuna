@@ -55,7 +55,7 @@ st.caption("Los resultados de este aplicativo son de carácter exploratorio y au
 
 with st.expander(":violet[Clic acá para ver información sobre las imagenes de entrada]"):
     st.markdown("""
-    Las imagenes de entrada utilizadas por los modelos fue construido mediante una serie de procesos de geoprocesamiento en `QGIS`. A partir de una cuadrícula base de puntos generada cada 500 metros sobre el área de estudio, se calcularon las siguientes variables espaciales:
+    Se requiere la carga de los archivos RGB, DTM y PTI, asegurando la consistencia con los canales de entrada utilizados durante el entrenamiento de la red de segmentación semántica.
 
     - **Distancias** a eventos de minas, acciones orientadas a civiles o a combatientes, y a vías.
         ¿a qué distancia está cada evento?
@@ -67,7 +67,7 @@ with st.expander(":violet[Clic acá para ver información sobre las imagenes de 
     - **Tipo de cobertura del suelo**, **tipo de relieve morfométrico** y **tipo de vía**, extraídos por intersección con cartografía temática
     - **Solicitudes de restitución de predios** a partir de información dela URT.
 
-    Finalmente, estas variables fueron compiladas en una única capa geográfica de puntos mediante una unión espacial, que luego fue exportada como un archivo `.gpkg` para su análisis en la herramienta.
+    Al completar la carga, se obtendra el mapa de probabilidades, listo para su análisis externo en software especializado como 'QGIS'.
     """)
 
 
@@ -77,7 +77,7 @@ st.subheader(":gray[Carga de datos:]", divider=True)
 #  IMAGENES
 # -------------------------------
 
-st.write(":gray[### Carga de datos]")
+st.write(":gray[Selecciona tus archivos]")
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -358,6 +358,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
