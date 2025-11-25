@@ -77,11 +77,13 @@ st.subheader(":gray[Carga de datos:]", divider=True)
 #  VISUALIZACIÓN DEL GPKG
 # -------------------------------
 
+# --- Carga de RGB  ---
 with st.expander(":gray[Clic acá para subir la imagen RGB]"):
     uploaded_rgb = st.file_uploader(
         "Sube tu archivo RGB", accept_multiple_files=False, type=["gpkg"], key="gpkg"
     )
 
+# --- Carga de DTM  ---
 with st.expander(":gray[Clic acá para subir la imagen DTM]"):
     uploaded_dtm = st.file_uploader(
         "Sube tu archivo DTM", 
@@ -91,7 +93,7 @@ with st.expander(":gray[Clic acá para subir la imagen DTM]"):
         key="uploader_dtm" # IMPORTANTE: Key único
     )
 
-# --- 3. Carga de PTI  ---
+# --- Carga de PTI  ---
 with st.expander(":gray[Clic acá para subir la imagen PTI]"):
     uploaded_pti = st.file_uploader(
         "Sube tu archivo PTI", 
@@ -99,6 +101,22 @@ with st.expander(":gray[Clic acá para subir la imagen PTI]"):
         type=["tif", "tiff", "gpkg"], 
         key="uploader_pti" # IMPORTANTE: Key único
     )
+
+st.write("### Carga de imágenes")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown(":gray[**Imagen RGB**]")
+    uploaded_rgb1 = st.file_uploader("RGB", type=["gpkg"], key="col_rgb")
+
+with col2:
+    st.markdown(":gray[**Imagen DTM**]")
+    uploaded_dtm2 = st.file_uploader("DTM", type=["tif", "gpkg"], key="col_dtm")
+
+with col3:
+    st.markdown(":gray[**Imagen PTI**]")
+    uploaded_pti3 = st.file_uploader("PTI", type=["tif", "gpkg"], key="col_pti")
 
     if uploaded_rgb is not None:
         try:
@@ -366,6 +384,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
