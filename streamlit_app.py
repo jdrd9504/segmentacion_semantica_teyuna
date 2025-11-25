@@ -84,7 +84,7 @@ with st.expander(":gray[Clic acá para subir la imagen RGB]"):
 
     if uploaded_rgb is not None:
         try:
-            gdf = gpd.read_file(uploaded_gpkg)
+            gdf = gpd.read_file(uploaded_rgb)
 
             if gdf.crs and gdf.crs.to_epsg() != 4326:
                 st.info(f" Reproyectando desde {gdf.crs} a EPSG:4326 para visualización.")
@@ -348,6 +348,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
