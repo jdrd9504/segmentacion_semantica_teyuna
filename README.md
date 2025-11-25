@@ -1,2 +1,2 @@
-# Búsqueda en Riberas
-## PRB Bajo Cauca
+# Modelo de segmentación semantica
+## Aplicacion: Teyuna - Ciudad Perdida
