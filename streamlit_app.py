@@ -40,10 +40,10 @@ Este aplicativo facilita el análisis de datos geoespaciales mediante la ingesta
 
 El sistema estima la probabilidad de cada pixel de pertenecer a cualquiera de las siguientes clases:
 
-**- Clase 1:** Templo
-**- Clase 2:** Monticulo
-**- Clase 3:** Hidrología
-**- Clase 4:** Fondo
+- Clase 1: Templo
+- Clase 2: Monticulo
+- Clase 3: Hidrología
+- Clase 4: Fondo
 
 A través de un mapa de segmentación , tablas de resumen y exportación de resultados, esta herramienta facilita la toma de decisiones arqueológicas basada en evidencia geoespacial.
 """)
@@ -95,6 +95,7 @@ st.markdown("---")
 st.subheader(":gray[Estimación de probabilidad]", divider=True)
 
 ctrl = ModelController()
+
 
 
 
