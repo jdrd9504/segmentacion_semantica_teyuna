@@ -14,7 +14,7 @@ from PIL import Image
 from io import BytesIO
 
 
-st.set_page_config(layout="wide", page_title="Búsqueda Riberas UBPD", page_icon="Sitios Búsquedaﾠ")
+st.set_page_config(layout="wide", page_title="Segmentación semantica", page_icon="Sitios Búsquedaﾠ")
 
 
 ##Logo Maestria
@@ -95,6 +95,7 @@ st.markdown("---")
 st.subheader(":gray[Estimación de probabilidad]", divider=True)
 
 ctrl = ModelController()
+
 
 
 
