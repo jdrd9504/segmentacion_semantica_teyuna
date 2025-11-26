@@ -77,15 +77,15 @@ st.write(":gray[Selecciona tus archivos]")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown(":gray[**Imagen RGB**]")
+    st.markdown(":gray[**RGB**]")
     uploaded_rgb = st.file_uploader("RGB", type=["gpkg"], key="col_rgb")
 
 with col2:
-    st.markdown(":gray[**Imagen DTM**]")
+    st.markdown(":gray[**Modelo Digital de terreno**]")
     uploaded_dtm = st.file_uploader("DTM", type=["tif", "gpkg"], key="col_dtm")
 
 with col3:
-    st.markdown(":gray[**Imagen PTI**]")
+    st.markdown(":gray[**Índice de posición topográfica**]")
     uploaded_pti = st.file_uploader("PTI", type=["tif", "gpkg"], key="col_pti")
 
     if uploaded_rgb is not None:
@@ -148,9 +148,9 @@ st.subheader(":gray[Estimación de probabilidad de sitio de interés para la bú
 
 ctrl = ModelController()
 
-if uploaded_gpkg is not None:
+if uploaded_rgb is not None:
     try:
-        gdf_input = gpd.read_file(uploaded_gpkg)
+        gdf_input = gpd.read_file(uploaded_rgb)
 
         tab1, tab2, tab3, tab4 = st.tabs([
             "Modelo 1 : Regresión Logística (MaxEnt)",
@@ -354,6 +354,7 @@ if uploaded_gpkg is not None:
 
     except Exception as e:
         st.error(f"❌ Error durante la predicción: {e}")
+
 
 
 
